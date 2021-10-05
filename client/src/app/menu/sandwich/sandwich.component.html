@@ -1,0 +1,33 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prix</th>
+      <th>Qte</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sandwich of sandwichs">
+      <td class="sandwich-components">
+        <b>{{ sandwich.name }}</b> &nbsp;<i>({{ sandwich.components }})</i>
+      </td>
+      <td>
+        <b>{{ sandwich.price }}</b>
+      </td>
+      <td>
+        <input type="number" value="01" class="qte" />
+      </td>
+      <td *ngIf="!sandwich.addedToCard">
+        <p class="btn btn-warning" (click)="addToCard(sandwich)">
+          <i class="fas fa-shopping-cart"></i>&nbsp; Acheter
+        </p>
+      </td>
+      <td *ngIf="sandwich.addedToCard">
+        <p class="btn btn-success" (click)="addToCard(sandwich)">
+          <i class="fas fa-check-circle"></i>&nbsp; Ajouté
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
