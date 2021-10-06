@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.example.demo.model.Menu;
 import com.example.demo.service.MenuService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class MenuController {
 
@@ -40,6 +42,11 @@ public class MenuController {
 			throw new RuntimeException("Menu not found for the Id:"+id);
 		}
 		return menuObj;
+	}
+	
+	@GetMapping("/menu/category={category}")
+	public List<Menu> getCategory(@PathVariable int category) {
+		return menuService.getCategory(category);
 	}
 	
 	@PutMapping("/menu")

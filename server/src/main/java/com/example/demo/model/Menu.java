@@ -23,6 +23,8 @@ public class Menu {
 	@Column
 	private String name;
 	@Column
+	private Integer category;
+	@Column
 	private String components;
 	@Column
 	private double price;
@@ -51,6 +53,15 @@ public class Menu {
 		this.name = name;
 	}
 
+	public Integer getCategory() {
+		return category;
+	}
+
+	public void setCategory(Integer category) {
+		this.category = category;
+	}
+
+	
 	public String getComponents() {
 		return components;
 	}

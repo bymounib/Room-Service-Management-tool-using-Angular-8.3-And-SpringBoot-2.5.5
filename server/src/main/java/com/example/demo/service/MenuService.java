@@ -10,6 +10,8 @@ public interface MenuService {
 	
 	Menu get(int id);
 	
+	List<Menu> getCategory(int category);
+
 	void save(Menu menu);
 	
 	void delete(int id); 

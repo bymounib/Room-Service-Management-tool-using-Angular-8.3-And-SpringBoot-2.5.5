@@ -31,6 +31,14 @@ public class MenuDAOImpl implements MenuDAO {
 		Menu menuObj = currentSession.get(Menu.class, id);
 		return menuObj;
 	}
+	
+	@Override
+	public List<Menu> getCategory(int category) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query<Menu> query = currentSession.createQuery("from Menu where category = :category", Menu.class).setParameter("category", category);
+		List<Menu> list = query.getResultList();
+		return list;	
+		}
 
 	@Override
 	public void save(Menu menu) {

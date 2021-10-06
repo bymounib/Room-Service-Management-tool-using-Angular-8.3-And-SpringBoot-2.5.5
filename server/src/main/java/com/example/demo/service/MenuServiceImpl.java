@@ -26,6 +26,10 @@ public class MenuServiceImpl implements MenuService {
 	public Menu get(int id) {
 		return menuDAO.get(id);
 	}
+	
+	public List<Menu> getCategory(int category) {
+		return menuDAO.getCategory(category);
+	}
 
 	@Transactional
 	@Override
