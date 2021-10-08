@@ -1,12 +1,17 @@
 package com.example.demo.model;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -22,8 +27,16 @@ public class Order {
 	private Integer id;
 	@Column
 	private Date date;
-	@Column
-	private Integer menu_id;
+
+	@ManyToOne(targetEntity = Menu.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="menu_id",referencedColumnName = "id")
+    private Menu menus;
+	public Menu getMenus() {
+		return menus;
+	}
+	public void setMenus(Menu menus) {
+		this.menus = menus;
+	}
 	@Column
 	private Integer qte;
 	@Column
@@ -45,12 +58,6 @@ public class Order {
 	}
 	public void setDate(Date date) {
 		this.date = date;
-	}
-	public Integer getMenu_id() {
-		return menu_id;
-	}
-	public void setMenu_id(Integer menu_id) {
-		this.menu_id = menu_id;
 	}
 	public Integer getQte() {
 		return qte;
@@ -78,7 +85,7 @@ public class Order {
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", date=" + date + ", menu_id=" + menu_id + ", qte=" + qte + ", state=" + state
+		return "Order [id=" + id + ", date=" + date + ", qte=" + qte + ", state=" + state
 				+ ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
 	}
 
