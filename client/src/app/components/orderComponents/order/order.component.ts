@@ -7,9 +7,12 @@ import { OrdersService } from "src/app/services/orders/orders.service";
   styleUrls: ["./order.component.css"],
 })
 export class OrderComponent implements OnInit {
-  public orders = [];
+  orders;
   constructor(private ordersList: OrdersService) {}
   ngOnInit() {
-    this.orders = this.ordersList.getOrders();
+    this.ordersList.getOrders().subscribe((data) => {
+      console.log(data);
+      this.orders = data;
+    });
   }
 }
