@@ -33,14 +33,29 @@ export class OrdersService {
   //   return this.orders;
   // }
 
-  // setOrders(newOrder) {
-  //   let item = {
-  //     name: newOrder.name,
-  //     qte: "01",
-  //     state: "En cours",
-  //     price: newOrder.price,
-  //     btnType: "Supprimer",
-  //   };
-  //   this.orders.push(item);
-  // }
+  setOrders(newOrder) {
+    let item = {
+      date: "2021-10-11",
+      menus: {
+        id: newOrder.id,
+        name: newOrder.name,
+        category: newOrder.category,
+        components: newOrder.components,
+        price: newOrder.price,
+        created_at: newOrder.created_at,
+        updated_at: null,
+      },
+      qte: newOrder.qte,
+      state: "en cours",
+      created_at: newOrder.created_at,
+      updated_at: null,
+    };
+    //   this.orders.push(item);
+    return this.http
+      .post<any>(`${this.apiServerUrl}/order`, item)
+      .subscribe((data) => {
+        this.orders = data;
+        // this.orders.push(item);
+      });
+  }
 }
