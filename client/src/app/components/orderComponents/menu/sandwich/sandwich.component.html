@@ -8,7 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let sandwich of sandwichs">
+    <tr
+      *ngFor="
+        let sandwich of sandwichs;
+        let index = index;
+        trackBy: trackByIndex
+      "
+    >
       <td class="sandwich-components">
         <b>{{ sandwich.name }}</b> &nbsp;<i>({{ sandwich.components }})</i>
       </td>
@@ -16,15 +22,15 @@
         <b>{{ sandwich.price }}$</b>
       </td>
       <td>
-        <input type="number" value="01" class="qte" />
+        <input type="number" class="qte" name="qte" [(ngModel)]="qte[index]" />
       </td>
       <td *ngIf="!sandwich.addedToCard">
-        <p class="btn btn-warning" (click)="addToCard(sandwich)">
+        <p class="btn btn-warning" (click)="addToCard(sandwich, index)">
           <i class="fas fa-shopping-cart"></i>&nbsp; Acheter
         </p>
       </td>
       <td *ngIf="sandwich.addedToCard">
-        <p class="btn btn-success" (click)="addToCard(sandwich)">
+        <p class="btn btn-success" (click)="addToCard(sandwich, index)">
           <i class="fas fa-check-circle"></i>&nbsp; Ajouté
         </p>
       </td>
