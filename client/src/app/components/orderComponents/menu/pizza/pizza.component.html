@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pizza of pizzas">
+    <tr *ngFor="let pizza of pizzas; let index = index; trackBy: trackByIndex">
       <td class="pizza-components">
         <b>{{ pizza.name }}</b> &nbsp;<i>({{ pizza.components }})</i>
       </td>
@@ -16,15 +16,15 @@
         <b>{{ pizza.price }}$</b>
       </td>
       <td>
-        <input type="number" value="01" class="qte" />
+        <input type="number" class="qte" name="qte" [(ngModel)]="qte[index]" />
       </td>
       <td *ngIf="!pizza.addedToCard">
-        <p class="btn btn-warning" (click)="addToCard(pizza)">
+        <p class="btn btn-warning" (click)="addToCard(pizza, index)">
           <i class="fas fa-shopping-cart"></i>&nbsp; Acheter
         </p>
       </td>
       <td *ngIf="pizza.addedToCard">
-        <p class="btn btn-success" (click)="addToCard(pizza)">
+        <p class="btn btn-success" (click)="addToCard(pizza, index)">
           <i class="fas fa-check-circle"></i>&nbsp; Ajouté
         </p>
       </td>
