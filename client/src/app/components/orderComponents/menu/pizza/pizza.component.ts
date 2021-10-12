@@ -9,6 +9,8 @@ import { OrdersService } from "src/app/services/orders/orders.service";
 })
 export class PizzaComponent implements OnInit {
   pizzas;
+  qte: number[] = [1];
+
   constructor(
     private MenusList: MenusService,
     private ordersList: OrdersService
@@ -17,9 +19,14 @@ export class PizzaComponent implements OnInit {
   ngOnInit() {
     this.MenusList.getPizzas().subscribe((data) => {
       this.pizzas = data;
+      for (let i = 0; i < data.length; i++) {
+        this.qte.push(1);
+      }
     });
   }
-
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
   // pizzas = [
   //   {
   //     name: "Pizza Margherita",
@@ -43,8 +50,10 @@ export class PizzaComponent implements OnInit {
   //   },
   // ];
 
-  addToCard(pizza) {
+  addToCard(pizza, index) {
     pizza.addedToCard = !pizza.addedToCard;
+    console.log("pizza", pizza);
+    pizza["qte"] = this.qte[index];
     this.ordersList.setOrders(pizza);
   }
 }

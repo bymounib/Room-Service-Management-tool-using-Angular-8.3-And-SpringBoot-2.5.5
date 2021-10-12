@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MenusService } from "src/app/services/menus/menus.service";
+import { OrdersService } from "src/app/services/orders/orders.service";
 
 @Component({
   selector: "app-drink",
@@ -8,12 +9,23 @@ import { MenusService } from "src/app/services/menus/menus.service";
 })
 export class DrinkComponent implements OnInit {
   drinks;
-  constructor(private MenusList: MenusService) {}
+  qte: number[] = [1];
+
+  constructor(
+    private MenusList: MenusService,
+    private ordersList: OrdersService
+  ) {}
 
   ngOnInit() {
     this.MenusList.getDrinks().subscribe((data) => {
       this.drinks = data;
+      for (let i = 0; i < data.length; i++) {
+        this.qte.push(1);
+      }
     });
+  }
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
   // drinks = [
   //   {
@@ -32,7 +44,9 @@ export class DrinkComponent implements OnInit {
   //     addedToCard: false,
   //   },
   // ];
-  addToCard(drink) {
+  addToCard(drink, index) {
     drink.addedToCard = !drink.addedToCard;
+    drink["qte"] = this.qte[index];
+    this.ordersList.setOrders(drink);
   }
 }
