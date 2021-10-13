@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -32,7 +32,6 @@ export class OrdersService {
   // getOrders() {
   //   return this.orders;
   // }
-
   setOrders(newOrder) {
     let item = {
       date: "2021-10-11",
@@ -51,6 +50,7 @@ export class OrdersService {
       updated_at: null,
     };
     //   this.orders.push(item);
+
     return this.http
       .post<any>(`${this.apiServerUrl}/order`, item)
       .subscribe((data) => {

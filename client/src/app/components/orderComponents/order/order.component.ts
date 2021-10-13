@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OrdersService } from "src/app/services/orders/orders.service";
+import { Observable, interval, Subscription } from "rxjs";
 
 @Component({
   selector: "app-order",
@@ -9,6 +10,8 @@ import { OrdersService } from "src/app/services/orders/orders.service";
 export class OrderComponent implements OnInit {
   orders;
   sum = 0;
+  private updateSubscription: Subscription;
+
   constructor(private ordersList: OrdersService) {}
   ngOnInit() {
     this.ordersList.getOrders().subscribe((data) => {
@@ -18,6 +21,12 @@ export class OrderComponent implements OnInit {
         let order = this.orders[i];
         this.sum += parseInt(order.menus.price);
       }
+    });
+
+    this.updateSubscription = interval(1000).subscribe((val) => {
+      this.ordersList.getOrders().subscribe((data) => {
+        this.orders = data;
+      });
     });
   }
 }
