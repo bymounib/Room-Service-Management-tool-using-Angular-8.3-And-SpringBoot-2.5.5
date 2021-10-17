@@ -23,10 +23,14 @@ export class OrderComponent implements OnInit {
       }
     });
 
-    this.updateSubscription = interval(1000).subscribe((val) => {
+    this.updateSubscription = interval(1000).subscribe(() => {
       this.ordersList.getOrders().subscribe((data) => {
         this.orders = data;
       });
     });
+  }
+  deleteOrder(order) {
+    console.log("order", order);
+    this.ordersList.deleteOrder(order);
   }
 }
