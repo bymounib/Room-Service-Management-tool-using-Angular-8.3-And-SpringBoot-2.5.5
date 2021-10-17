@@ -58,4 +58,31 @@ export class OrdersService {
         // this.orders.push(item);
       });
   }
+  deleteOrder(order) {
+    let item = {
+      id: order.id,
+      date: "2021-10-11",
+      menus: {
+        id: order.menus.id,
+        name: order.menus.name,
+        category: order.menus.category,
+        components: order.menus.components,
+        price: order.menus.price,
+        created_at: order.menus.created_at,
+        updated_at: null,
+      },
+      qte: order.qte,
+      state: "en cours",
+      deleted: 1,
+      created_at: order.created_at,
+      updated_at: null,
+    };
+    //   this.orders.push(item);
+
+    return this.http
+      .put<any>(`${this.apiServerUrl}/order`, item)
+      .subscribe((data) => {
+        this.orders = data;
+      });
+  }
 }
