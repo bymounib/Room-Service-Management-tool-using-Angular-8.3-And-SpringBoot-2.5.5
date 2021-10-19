@@ -41,6 +41,8 @@ public class Order {
 	private Integer qte;
 	@Column
 	private String state;
+	@Column
+	private Integer deleted;
 	@Column	
 	@CreatedDate
     private Date created_at;
@@ -70,6 +72,12 @@ public class Order {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public Integer getDeleted() {
+		return deleted;
+	}
+	public void setDeleted(Integer deleted) {
+		this.deleted = deleted;
 	}
 	public Date getCreated_at() {
 		return created_at;
