@@ -25,34 +25,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Lorem Ipsum</td>
-            <td>01/02/2021</td>
-            <td>
-              <p class="btn btn-success">
-                <i class="fas fa-check-circle"></i>Délivré
-              </p>
-            </td>
-            <td>
-              <button type="button" class="btn btn-warning">
-                <i class="far fa-file-pdf"></i> Détails (PDF)
-              </button>
-            </td>
-          </tr>
+          <tr *ngFor="let claim of claims">
+            <ng-container *ngIf="claim.deleted != 1">
+              <td>{{ claim.object }}</td>
+              <td>{{ claim.created_at }}</td>
+              <td>
+                <button class="btn btn-danger" *ngIf="claim.state === 'refusé'">
+                  <i class="fas fa-times-circle"></i>Refusé
+                </button>
 
-          <tr>
-            <td>Lorem Ipsum</td>
-            <td>04/09/2020</td>
-            <td>
-              <button class="btn btn-primary">
-                <i class="fas fa-spinner"></i>En cours
-              </button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger">
-                <i class="fas fa-trash-alt"></i> Supprimer
-              </button>
-            </td>
+                <button
+                  class="btn btn-primary"
+                  *ngIf="claim.state === 'en cours'"
+                >
+                  <i class="fas fa-spinner"></i>En cours
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-warning">
+                  <i class="far fa-file-pdf"></i> Détails (PDF)
+                </button>
+              </td>
+            </ng-container>
           </tr>
         </tbody>
       </table>
