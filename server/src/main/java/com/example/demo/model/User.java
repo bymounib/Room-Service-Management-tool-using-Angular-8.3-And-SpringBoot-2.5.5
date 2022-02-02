@@ -21,14 +21,8 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name="firstName")
-	private String firstName;
-
-	@Column(name="lastName")
-	private String lastName;
-
 	@Column
-	private String email;
+	private String username;
 
 	@Column
 	private String password;
@@ -41,6 +35,15 @@ public class User {
 
 	@Column
 	private String roomNb;
+	
+    private String role;
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 	
 	@Column	
 	@CreatedDate
@@ -58,28 +61,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -130,10 +117,4 @@ public class User {
 		this.updated_at = updated_at;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", passport=" + passport + ", phone=" + phone + ", roomNb=" + roomNb
-				+ ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
-	}
 }
