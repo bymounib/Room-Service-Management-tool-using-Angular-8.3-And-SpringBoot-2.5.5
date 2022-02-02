@@ -1,0 +1,110 @@
+.container1 {
+    background-color: #161819;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  .global-block {
+    padding: 10%;
+    height: 100%;
+  }
+  .image {
+    width: 100%;
+    border-radius: 40px;
+  }
+  .left-items{
+    margin-top: 10%;
+  }
+  .whiteBlock {
+    background-color: white;
+    border-radius: 20px;
+  }
+  .subtitle {
+    color: white;
+    font-family: Righteous;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 3px;
+  }
+  .second-subtitle {
+    color: white;
+    font-family: Inder;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .vl {
+    border-left: 1px solid white;
+    height: 500px;
+  }
+
+  /*loginBlock*/
+  .login-block{
+    background-color: #0A0A0A;
+    color: white;
+    padding: 30px 20px;
+  }
+  .login-txt{
+     font-family: Righteous;
+     font-size: 30px;
+  }
+  .email-img{
+    width:40px;background-color: #161819;padding: 5px;
+  }
+
+.input-email{
+  background-color: #161819; border: #161819; color: white;
+}
+.password-img{
+  width:40px;background-color: #161819;padding: 10px;
+}
+  .form-check-block{
+    margin-top: 20px;
+  }
+  .forget-password{
+    float: right;
+    color: gold;
+    text-decoration-line: none;
+  }
+  .btn{
+    width: 100%;
+    background-color: gold;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .create{
+    color: gold;
+    text-decoration-line: none;
+    margin-bottom: 20px;
+  }
+  .input-txt{
+    font-family: Inder;
+  }
+  .password-txt{
+    margin-top: 20px;
+  }
+  .password-input{
+    background-color: #161819; border: #161819; color: white;
+  }
+  .form-control:focus {
+    box-shadow: inset 0 1px 1px white, 0 0 8px white;
+    background-color: black;
+    color: white;
+}
+
+@media screen and (max-width : 768px) {
+  .left-items{
+    display: none;
+  }
+  .vl{
+    display: none;
+  }
+}

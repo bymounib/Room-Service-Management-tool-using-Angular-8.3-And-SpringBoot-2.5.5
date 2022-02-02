@@ -1,0 +1,52 @@
+    <div class="container1">
+      <div class="row global-block">
+        <div class="col-md-5 left-items">
+          <img src="assets/images/logo.jpg" class="image" />
+          <p class="subtitle">Bienvenu sur notre site web</p>
+          <p class="second-subtitle">
+            votre espace pour suivre vos commandes en ligne
+          </p>
+        </div>
+
+        <div class="col-md-1 vl"></div>
+
+        <div class="col-md-6">
+          <div class="login-block">
+            <div class="container">
+            <p class="login-txt">Se connecter</p>
+            <form #f="ngForm" class="form-signin" (ngSubmit)="doLogin()">
+            <p class="input-txt">Email:</p>
+            <div class="input-group">
+             <div class="input-group-addon">
+                <img src="assets/images/msg.png" class="email-img">
+            </div>
+             <input class="form-control input-email" type="text" 
+             placeholder="Votre email" ngModel required autofocus [(ngModel)]="username" name="username"/>
+            </div>
+
+            <p class="input-txt password-txt">Mot de passe:</p>
+            <div class="input-group">
+             <div class="input-group-addon">
+                <img src="assets/images/password.png" class="password-img">            
+            </div>
+             <input class="form-control password-input" type="password" placeholder="Votre mot de passe" name="password" [(ngModel)]="password" required/>
+            </div>
+            <div class="row form-check-block">
+              <div class="col-md-6">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input">
+                  <label class="form-check-label">Se souvenir de moi</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <a href="" class="forget-password">Mot de passe oublié ?</a>
+              </div>
+            </div>
+            <button class="btn" type="submit">Se connecter</button>
+            <a class="create" href="#">Créer un compte</a>
+          </form>
+          </div>
+           </div>
+           </div>
+        </div>
+      </div>
