@@ -15,6 +15,7 @@ import { DrinkComponent } from "./components/orderComponents/menu/drink/drink.co
 import { ClaimComponent } from "./components/claimComponents/claim/claim.component";
 import { AddClaimComponent } from "./components/claimComponents/add-claim/add-claim.component";
 import { HttpClientModule } from "@angular/common/http";
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { HttpClientModule } from "@angular/common/http";
     DrinkComponent,
     ClaimComponent,
     AddClaimComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
