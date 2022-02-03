@@ -6,7 +6,7 @@ import { OrderComponent } from "./components/orderComponents/order/order.compone
 
 const routes: Routes = [
   {
-    path: "/order",
+    path: "order",
     component: OrderComponent, canActivate: [AuthGuard]
   },
   { path: "claim", component: ClaimComponent, canActivate: [AuthGuard]},
