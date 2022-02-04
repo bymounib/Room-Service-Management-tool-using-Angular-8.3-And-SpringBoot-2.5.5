@@ -38,5 +38,4 @@ public class OrderServiceImpl implements OrderService {
 	public void delete(int id) {
 		orderDAO.delete(id);
 	}
-
 }
