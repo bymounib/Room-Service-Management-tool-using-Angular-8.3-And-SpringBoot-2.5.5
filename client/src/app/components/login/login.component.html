@@ -42,6 +42,9 @@
                 <a href="" class="forget-password">Mot de passe oublié ?</a>
               </div>
             </div>
+            <div  class="alert alert-danger" *ngIf="err==1">
+              <strong>Login ou mot de passe erronés</strong>
+             </div>
             <button class="btn" type="submit">Se connecter</button>
             <a class="create" href="#">Créer un compte</a>
           </form>
