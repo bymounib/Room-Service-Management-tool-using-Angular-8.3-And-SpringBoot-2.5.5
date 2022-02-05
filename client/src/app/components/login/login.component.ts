@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,26 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  err:number = 0;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,private router: Router) { }
 
   ngOnInit() {
+/*    if (this.authenticationService.isAuthenticated) {
+      console.log("this.authenticationService.isAuthenticated",this.authenticationService.isAuthenticated)
+      this.router.navigate(['/orders']);
+   }*/
   }
 
   doLogin() {
-    //console.log("username:",this.username)
-    let resp= this.authenticationService.authenticate(this.username,this.password);
-/*   resp.subscribe(data=>{
-     console.log(data)
-   })*/
-  } 
+    let resp= this.authenticationService.login(this.username,this.password);
+   resp.subscribe(data=>{
+     console.log(data);
+     let jwToken = data['jwt'];
+     this.authenticationService.saveToken(jwToken);
+     this.router.navigate(['claim']);
+    },(err)=>{   this.err = 1;
+ });
 }
+}
+
