@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.model.Menu;
 import com.example.demo.model.User;
 
 @Repository
@@ -26,10 +27,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User get(int id) {
+	public User get(String username) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		User userObj = currentSession.get(User.class, id);
-		return userObj;
+		Query<User> query = currentSession.createQuery("from User where username = :username", User.class).setParameter("username", username);
+		List<User> list = query.getResultList();
+		return list.get(0);
+		//User userObj = currentSession.get(User.class, username);
+		//return userObj;
 	}
 
 	@Override
