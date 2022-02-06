@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.controller.CustomUserDetails;
 import com.example.demo.dao.UserDAO;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.model.Order;
 import com.example.demo.model.User;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private UserDAO userDAO;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,4 +35,9 @@ public class MyUserDetailsService implements UserDetailsService {
         }
         return new CustomUserDetails(user);
     }
+    
+	@Transactional
+	public User get(String username) {
+		return userDAO.get(username);
+	}
 }
