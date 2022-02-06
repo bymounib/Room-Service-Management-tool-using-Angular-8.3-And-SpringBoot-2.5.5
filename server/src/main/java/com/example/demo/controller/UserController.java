@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.AuthenticationRequest;
 import com.example.demo.model.AuthenticationResponse;
+import com.example.demo.model.Order;
+import com.example.demo.model.User;
 import com.example.demo.service.MyUserDetailsService;
 import com.example.demo.util.JwtUtil;
 
@@ -40,6 +42,7 @@ class UserController {
 	}
 
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
 		try {
@@ -56,8 +59,10 @@ class UserController {
 				.loadUserByUsername(authenticationRequest.getUsername());
 
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
-
-		return ResponseEntity.ok(new AuthenticationResponse(jwt));
+		String name= authenticationRequest.getUsername();
+		User UserObj = userDetailsService.get(name);
+		Integer id =UserObj.getId(); 
+		return ResponseEntity.ok(new AuthenticationResponse(id,name,jwt));
 	}
 
 }
