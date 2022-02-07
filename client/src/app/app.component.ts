@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { AuthenticationService } from './services/authentication/authentication.
 })
 export class AppComponent {
   title = 'RoomServices';
-  constructor(public authenticationSevice: AuthenticationService){
-
+  constructor(public authenticationSevice: AuthenticationService,private router: Router){
+  }
+  ngOnInit(): void {
+    if (this.authenticationSevice.isAuthenticated()) {
+      this.router.navigate(['/order']);
+    }
   }
 }
