@@ -1,4 +1,4 @@
-<app-login *ngIf="!authenticationSevice.isAuthenticated"></app-login>
+<app-login *ngIf="!authenticationSevice.isAuthenticated()"></app-login>
 <div class="row global" *ngIf="authenticationSevice.isAuthenticated">
   <div class="sidebar col-lg-3">
     <app-sidebar></app-sidebar>
