@@ -16,10 +16,10 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,private router: Router) { }
 
   ngOnInit() {
-/*    if (this.authenticationService.isAuthenticated) {
-      console.log("this.authenticationService.isAuthenticated",this.authenticationService.isAuthenticated)
+    if (this.authenticationService.verifyAuth()) {
+      console.log("this.authenticationService.isAuthenticated",this.authenticationService.verifyAuth())
       this.router.navigate(['/orders']);
-   }*/
+   }
   }
 
   doLogin() {
