@@ -7,7 +7,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  isAuthenticated=false;
 
   token:string;
   public loggedUser:string;
@@ -25,7 +24,12 @@ export class AuthenticationService {
     this.isAuthenticated = false;
     return false;
   }*/
-  
+  isAuthenticated(){
+    return this.getToken() !== null;
+  }
+  getToken(): string | null {
+    return localStorage.getItem('jwt');
+  }
   public login(username:string,password:string){
 //    const headers= new HttpHeaders({Authorization: 'Basic '+ btoa(username+":"+password)});
     //this.isAuthenticated=true;
@@ -38,7 +42,6 @@ export class AuthenticationService {
     this.token = jwt;
     this.isloggedIn = true; 
     this.decodeJWT();
-    this.isAuthenticated = true; 
   }
   
   decodeJWT()
@@ -46,6 +49,12 @@ export class AuthenticationService {
             return;
     const decodedToken = this.helper.decodeToken(this.token);
     this.loggedUser = decodedToken.sub;
+  }
+
+  verifyAuth(){
+    if(this.isAuthenticated)
+      return true;
+    return false;
   }
 
 }
