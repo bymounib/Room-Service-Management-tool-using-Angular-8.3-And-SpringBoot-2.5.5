@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient,HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 
@@ -6,12 +6,24 @@ import { Observable, Subject } from "rxjs";
   providedIn: "root",
 })
 export class OrdersService {
+  token:string;
   private apiServerUrl = "http://localhost:9191/api";
   constructor(private http: HttpClient) {}
   getOrders(): Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/order`);
+    this.getToken();
+      const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.token}`
+  })
+  //console.log("coca",typeof(headers));
+    return this.http.get<any>(`${this.apiServerUrl}/order`, { headers: headers });
   }
   orders = this.getOrders();
+
+  getToken() {
+    this.token= localStorage.getItem('jwt');
+  }
+
   // constructor() {}
   // public orders = [
   //   {
@@ -50,9 +62,13 @@ export class OrdersService {
       updated_at: null,
     };
     //   this.orders.push(item);
-
+    this.getToken();
+      const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.token}`
+  })
     return this.http
-      .post<any>(`${this.apiServerUrl}/order`, item)
+      .post<any>(`${this.apiServerUrl}/order`, item, { headers: headers })
       .subscribe((data) => {
         this.orders = data;
         // this.orders.push(item);
