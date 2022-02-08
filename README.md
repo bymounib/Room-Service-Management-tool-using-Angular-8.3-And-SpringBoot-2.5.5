@@ -5,3 +5,7 @@ This project was made to practice some principals like <b> Guards, services, Laz
 
 ## Database Design
 ![](server/database.png)
+
+## Login Page
+
+![](client/src/assets/images/loginPage.png)
