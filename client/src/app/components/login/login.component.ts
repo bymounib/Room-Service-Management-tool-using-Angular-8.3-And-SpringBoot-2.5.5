@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
    }
   }
 
-  doLogin() {
+  doLogin(f: NgForm) {
     let resp= this.authenticationService.login(this.username,this.password);
    resp.subscribe(data=>{
      console.log(data);
