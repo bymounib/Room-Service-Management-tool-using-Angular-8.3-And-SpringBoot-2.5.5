@@ -14,13 +14,13 @@
           <div class="login-block">
             <div class="container">
             <p class="login-txt">Se connecter</p>
-            <form #f="ngForm" class="form-signin" (ngSubmit)="doLogin()">
+            <form #f="ngForm" class="form-signin" (ngSubmit)="doLogin(f)">
             <p class="input-txt">Email:</p>
             <div class="input-group">
              <div class="input-group-addon">
                 <img src="assets/images/msg.png" class="email-img">
             </div>
-             <input class="form-control input-email" type="text" 
+             <input class="form-control input-email" type="email" 
              placeholder="Votre email" ngModel required autofocus [(ngModel)]="username" name="username"/>
             </div>
 
@@ -43,8 +43,16 @@
               </div>
             </div>
             <div  class="alert alert-danger" *ngIf="err==1">
-              <strong>Login ou mot de passe erronés</strong>
+              <strong>Email ou mot de passe erronés</strong>
              </div>
+             <div  class="alert alert-danger" *ngIf="f.controls.username.touched && !f.controls.username.errors.required">
+              <strong>Veuillez saisir votre Email</strong>
+             </div>
+             
+             <div  class="alert alert-danger" *ngIf="f.controls.password.touched && f.controls.password.errors.required">
+              <strong>Veuillez saisir votre mot de passe</strong>
+             </div>
+
             <button class="btn" type="submit">Se connecter</button>
             <a class="create" href="#">Créer un compte</a>
           </form>
