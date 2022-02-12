@@ -43,6 +43,15 @@ public class OrderController {
 		return orderObj;
 	}
 	
+	@GetMapping("/orders/{userId}")
+	public List<Order> getByUserId(@PathVariable int userId) {
+		List<Order> orderObj = orderService.getByUserId(userId);
+		if(orderObj == null) {
+			throw new RuntimeException("Order not found for the userId:"+userId);
+		}
+		return orderObj;
+	}
+	
 	@PutMapping("/order")
 	public Order update(@RequestBody Order orderObj) {
 		orderService.save(orderObj);
