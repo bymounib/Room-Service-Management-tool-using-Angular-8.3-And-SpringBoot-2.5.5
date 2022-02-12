@@ -12,5 +12,7 @@ public interface OrderDAO {
 	
 	void save(Order order);
 	
-	void delete(int id); 
+	void delete(int id);
+
+	List<Order> getByUserId(int userId); 
 }
