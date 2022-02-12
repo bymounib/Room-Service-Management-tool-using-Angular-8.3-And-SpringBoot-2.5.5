@@ -13,4 +13,6 @@ public interface OrderService {
 	void save(Order order);
 	
 	void delete(int id);
+
+	List<Order> getByUserId(int userId);
 }
