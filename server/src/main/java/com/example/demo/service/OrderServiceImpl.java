@@ -38,4 +38,9 @@ public class OrderServiceImpl implements OrderService {
 	public void delete(int id) {
 		orderDAO.delete(id);
 	}
+
+	@Override
+	public List<Order> getByUserId(int userId) {
+		return orderDAO.getByUserId(userId);
+	}
 }
