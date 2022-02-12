@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.Order;
+import com.example.demo.model.User;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -43,5 +44,13 @@ public class OrderDAOImpl implements OrderDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Order orderObj = currentSession.get(Order.class, id);
 		currentSession.delete(orderObj);
+	}
+
+	@Override
+	public List<Order> getByUserId(int userId) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query<Order> query = currentSession.createQuery("from Order where userid = :userid", Order.class).setParameter("userid", userId);
+		List<Order> list = query.getResultList();
+		return list;
 	}
 }
