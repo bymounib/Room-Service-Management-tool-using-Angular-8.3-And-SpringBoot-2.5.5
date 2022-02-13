@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,19 +30,19 @@ public class Order {
 	@Column
 	private Date date;
 
-	@ManyToOne(targetEntity = Menu.class,cascade = CascadeType.ALL)
-    @JoinColumn(name ="menu_id",referencedColumnName = "id")
-    private Menu menus;
-	public Menu getMenus() {
-		return menus;
-	}
-	public void setMenus(Menu menus) {
-		this.menus = menus;
-	}
+	@ManyToMany
+    @JoinTable(
+            name = "menu_order",
+            joinColumns = @JoinColumn(name = "idMenu"),
+            inverseJoinColumns = @JoinColumn(name = "idOrder")
+    )
+	public List<Menu> menus;
+	
 	@Column
 	private Integer qte;
 	@Column
 	private String state;
+	
 	@Column
 	private Integer deleted;
 	@Column	
@@ -96,5 +98,10 @@ public class Order {
 		return "Order [id=" + id + ", date=" + date + ", qte=" + qte + ", state=" + state
 				+ ", created_at=" + created_at + ", updated_at=" + updated_at + "]";
 	}
-
+	public List<Menu> getMenus() {
+		return menus;
+	}
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
+	}
 	}
