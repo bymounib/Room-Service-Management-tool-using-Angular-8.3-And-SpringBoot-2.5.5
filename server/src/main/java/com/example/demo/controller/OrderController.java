@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.Menu;
 import com.example.demo.model.Order;
+import com.example.demo.service.MenuService;
 import com.example.demo.service.OrderService;
 
 @RestController
@@ -22,6 +24,9 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private MenuService menuService;
 	
 	@PostMapping("/order")
 	public Order save(@RequestBody Order orderObj) {
@@ -63,4 +68,16 @@ public class OrderController {
 		orderService.delete(id);
 		return "Order has been deleted with id:"+id;
 	}
+	
+	@PutMapping("/{orderId}/menu/{menuId}")
+    Order assignMenuToOrder(
+            @PathVariable int orderId,
+            @PathVariable int menuId
+    ) {
+		Order order = orderService.get(orderId);
+        Menu menu = menuService.get(menuId);
+        order.menus.add(menu);
+        orderService.save(order);
+        return order;
+    }
 }
