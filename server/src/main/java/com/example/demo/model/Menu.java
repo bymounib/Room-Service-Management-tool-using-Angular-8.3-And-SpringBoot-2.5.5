@@ -1,16 +1,20 @@
 package com.example.demo.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "menu")
@@ -28,6 +32,10 @@ public class Menu {
 	private String components;
 	@Column
 	private double price;
+	
+	@JsonIgnore
+    @ManyToMany(mappedBy = "menus")
+    private List<Order> orders ;
 	
 	@Column	
 	@CreatedDate
@@ -92,6 +100,14 @@ public class Menu {
 
 	public void setUpdated_at(Date updated_at) {
 		this.updated_at = updated_at;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override
