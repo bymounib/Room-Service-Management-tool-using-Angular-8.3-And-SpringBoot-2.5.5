@@ -1,0 +1,11 @@
+.global {
+    width: 100% !important;
+  }
+  .sidebar {
+    background-color: #282828;
+    height: 100vh;
+  }
+  .navc {
+    background-color: black;
+  }
+  
