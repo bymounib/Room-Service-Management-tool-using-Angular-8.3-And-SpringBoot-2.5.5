@@ -52,8 +52,8 @@ export class AuthenticationService {
   }
 
   verifyAuth(){
-    if(this.isAuthenticated)
-      return true;
+    if(this.isAuthenticated()){
+      return true;}
     return false;
   }
 
