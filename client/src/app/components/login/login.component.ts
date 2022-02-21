@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.authenticationService.verifyAuth()) {
-      console.log("this.authenticationService.isAuthenticated",this.authenticationService.verifyAuth())
-      this.router.navigate(['/orders']);
+      this.router.navigate(['/user/orders']);
    }
   }
 
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
      console.log(data);
      let jwToken = data['jwt'];
      this.authenticationService.saveToken(jwToken);
-     this.router.navigate(['claim']);
+     this.router.navigate(['/user/claim']);
     },(err)=>{   this.err = 1;
  });
 }
